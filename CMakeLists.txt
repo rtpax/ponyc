@@ -18,6 +18,10 @@ endif()
 # Uncomment this to show build commands
 # set(CMAKE_VERBOSE_MAKEFILE ON)
 
+# We require C++14 (because LLVM does)
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 # We require LLVM, Google Test and Google Benchmark
 if(NOT PONY_CROSS_LIBPONYRT)
     find_package(LLVM REQUIRED CONFIG PATHS "build/libs/lib/cmake/llvm" "build/libs/lib64/cmake/llvm" NO_DEFAULT_PATH)
