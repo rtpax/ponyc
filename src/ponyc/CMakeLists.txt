@@ -42,7 +42,7 @@ else()
     llvm_config(ponyc all)
 
     if(${CMAKE_HOST_SYSTEM_NAME} MATCHES "Darwin")
-        target_link_libraries(ponyc PRIVATE dl)
+        target_link_libraries(ponyc PRIVATE dl z LLVMXRay LLVMWindowsManifest LLVMTableGen LLVMSymbolize LLVMDebugInfoPDB LLVMOrcJIT LLVMOrcError LLVMJITLink LLVMObjectYAML LLVMMIRParser LLVMMCA LLVMLTO LLVMPasses LLVMCoroutines LLVMObjCARCOpts LLVMipo LLVMInstrumentation LLVMVectorize LLVMLinker LLVMIRReader LLVMAsmParser LLVMFrontendOpenMP LLVMExtensions LLVMLineEditor LLVMLibDriver LLVMInterpreter LLVMFuzzMutate LLVMMCJIT LLVMExecutionEngine LLVMRuntimeDyld LLVMDWARFLinker LLVMDlltoolDriver LLVMOption LLVMDebugInfoGSYM LLVMCoverage LLVMAArch64Disassembler LLVMAArch64CodeGen LLVMAArch64AsmParser LLVMAArch64Desc LLVMAArch64Utils LLVMAArch64Info LLVMX86Disassembler LLVMX86CodeGen LLVMX86AsmParser LLVMX86Desc LLVMX86Info LLVMARMDisassembler LLVMARMCodeGen LLVMCFGuard LLVMGlobalISel LLVMSelectionDAG LLVMAsmPrinter LLVMDebugInfoDWARF LLVMCodeGen LLVMTarget LLVMScalarOpts LLVMInstCombine LLVMAggressiveInstCombine LLVMTransformUtils LLVMBitWriter LLVMAnalysis LLVMProfileData LLVMObject LLVMTextAPI LLVMBitReader LLVMCore LLVMRemarks LLVMBitstreamReader LLVMARMAsmParser LLVMMCParser LLVMARMDesc LLVMMCDisassembler LLVMMC LLVMDebugInfoCodeView LLVMDebugInfoMSF LLVMBinaryFormat LLVMARMUtils LLVMARMInfo LLVMSupport LLVMDemangle)
     elseif(${CMAKE_HOST_SYSTEM_NAME} MATCHES "BSD|DragonFly")
         target_link_libraries(ponyc PRIVATE execinfo)
     else()
