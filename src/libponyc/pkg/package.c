@@ -945,6 +945,10 @@ ast_t* program_load(const char* path, pass_opt_t* opt)
 
 ast_t* package_load(ast_t* from, const char* path, pass_opt_t* opt)
 {
+  //   STA
+  //   ast_t* curr_package = ast_nearest(ast, TK_PACKAGE);
+  //   gets use the package we are going in.
+  //
   pony_assert(from != NULL);
 
   magic_package_t* magic = find_magic_package(path, opt);
