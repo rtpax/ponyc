@@ -473,7 +473,7 @@ TEST_F(CodegenTest, DoNotOptimiseApplyPrimitive)
 //
 // This test is disabled on LLVM 3.9 and 4.0 because exceptions crossing JIT
 // boundaries are broken with the ORC JIT on these versions.
-#if !defined(PLATFORM_IS_WINDOWS)
+#if !defined(PLATFORM_IS_WINDOWS) || (defined(PLATFORM_IS_MACOSX) && defined(PLATFORM_IS_ARM))
 TEST_F(CodegenTest, TryBlockCantCatchCppExcept)
 {
   const char* src =
@@ -740,6 +740,7 @@ TEST_F(CodegenTest, RepeatLoopBreakOnlyInBranches)
   TEST_COMPILE(src);
 }
 
+#if !(defined(PLATFORM_IS_MACOSX) && defined(PLATFORM_IS_ARM))
 TEST_F(CodegenTest, CycleDetector)
 {
   const char* src =
@@ -842,6 +843,7 @@ TEST_F(CodegenTest, CycleDetector)
   ASSERT_TRUE(run_program(&exit_code));
   ASSERT_EQ(exit_code, 0);
 }
+#endif
 
 TEST_F(CodegenTest, TryThenClauseReturn)
 {
