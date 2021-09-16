@@ -1,6 +1,6 @@
 config ?= release
 arch ?= native
-tune ?= generic
+tune ?= native
 build_flags ?= -j2
 llvm_archs ?= X86;ARM;AArch64
 llvm_config ?= Release

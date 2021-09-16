@@ -52,10 +52,10 @@ static void set_registers(struct _Unwind_Exception* exception,
 // Note that this does not apply to ARM64 devices which use DWARF Exception Handling.
 #if defined(PLATFORM_IS_ARM32)
 
-_Unwind_Reason_Code __gnu_unwind_frame(_Unwind_Exception*, _Unwind_Context*);
+_Unwind_Reason_Code __gnu_unwind_frame(_Unwind_Exception*, struct _Unwind_Context*);
 
 static _Unwind_Reason_Code continue_unwind(_Unwind_Exception* exception,
-  _Unwind_Context* context)
+  struct _Unwind_Context* context)
 {
   if(__gnu_unwind_frame(exception, context) != _URC_OK)
     return _URC_FAILURE;
@@ -64,12 +64,12 @@ static _Unwind_Reason_Code continue_unwind(_Unwind_Exception* exception,
 }
 
 PONY_API _Unwind_Reason_Code ponyint_personality_v0(_Unwind_State state,
-  _Unwind_Exception* exception, _Unwind_Context* context)
+  _Unwind_Exception* exception, struct _Unwind_Context* context)
 {
   if(exception == NULL || context == NULL)
     return _URC_FAILURE;
 
-  if(memcmp(exception->exception_class, PONY_EXCEPTION_CLASS, 8) != 0)
+  if(memcmp((const void *)exception->exception_class, PONY_EXCEPTION_CLASS, 8) != 0)
     return continue_unwind(exception, context);
 
   // Save exception in r12.
